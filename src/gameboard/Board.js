@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Square from './Square.js';
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -60,42 +62,6 @@ class Board extends React.Component {
         <div className='status'>{this.state.mineLocationsArray}</div>
         {this.getOtherList()}
       </div>
-    );
-  }
-}
-
-class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null
-    };
-  }
-
-  // Copy of the one in Board component.
-  // TODO: Isolate this as a utility.
-  contains (coordinates) {
-    for (var i = 0; i < this.props.mineLocations.length; i++) {
-      if (this.props.mineLocations[i][0] === coordinates[0] && this.props.mineLocations[i][1] === coordinates[1]) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  placeUnit(coordinates) {
-    if (this.contains(coordinates)) {
-      return "X";
-    } else {
-      return "O";
-    }
-  }
-
-  render() {
-    return (
-      <button className='square' onClick={() => this.setState({ value: 'X' })}>
-        {this.placeUnit(this.props.coordinates)}
-      </button>
     );
   }
 }
