@@ -8,7 +8,7 @@ class Board extends React.Component {
     this.state = { mineLocationsArray: this.generateMineLocations() };
   }
 
-  contains(mineLocations, x, y) {
+  tileIsAMine(mineLocations, x, y) {
     for (var i = 0; i < mineLocations.length; i++) {
       if (mineLocations[i][0] === x && mineLocations[i][1] === y) {
         return true;
@@ -22,16 +22,12 @@ class Board extends React.Component {
     while (mineLocations.length <= 72) {
       var x = Math.floor(Math.random() * 16);
       var y = Math.floor(Math.random() * 30);
-      if (!this.contains(mineLocations, x, y)) {
+      if (!this.tileIsAMine(mineLocations, x, y)) {
         mineLocations.push([x, y]);
       }
     }
     mineLocations.sort();
     return mineLocations;
-  }
-
-  renderSquare(i) {
-    return <Square />;
   }
 
   getDivList(xCoord) {
@@ -55,8 +51,6 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
-
     return (
       <div>
         <div className='status'>{this.state.mineLocationsArray}</div>
