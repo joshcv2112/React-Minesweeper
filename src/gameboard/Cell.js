@@ -32,10 +32,17 @@ class Cell extends React.Component {
       }
     }
   
+    displayValue() {
+      if (this.props.value == 0)
+        return "";
+      return this.props.value;
+    }
+
     render() {
       return (
         <button className='square' onClick={() => this.setState({ cellValue: 'X' })}>
-          {this.props.value}
+          {/*this.props.value*/}
+          {this.displayValue()}
         </button>
       );
     }

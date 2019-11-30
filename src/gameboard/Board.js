@@ -30,26 +30,45 @@ class Board extends React.Component {
     return mineLocations;
   }
 
+  isMineAdjacent(x, y) {
+    if (this.tileIsAMine(this.state.mineLocationsArray, x, y)) 
+      return 1;
+    return 0;
+  }
+
+  // TODO: Implement this functionality...
+  getProximityToMine(x, y) {
+    var numAdjacentMines = 0;
+    var neighborsList = [[-1,-1],[0,-1],[1,-1],[-1,0],[1,0],[-1,1],[0,1],[1,1]];
+    for (var i = 0; i < neighborsList.length; i++) {
+      numAdjacentMines += this.isMineAdjacent(x + neighborsList[i][0], y + neighborsList[i][1]);
+    }
+    return numAdjacentMines;
+  }
+
+  getCellValue(x, y) {
+    if (this.tileIsAMine(this.state.mineLocationsArray, x, y)) {
+      return "X";
+    }
+    return this.getProximityToMine(x, y);
+  }
+
   getDivList(xCoord) {
     var divList = [];
-
-    for (var i = 0; i < 30; i++) {
+    for (var yCoord = 0; yCoord < 30; yCoord++) {
+      this.getCellValue();
       divList.push(<Cell
         mineLocations={this.state.mineLocationsArray}
-        coordinates={[xCoord, i]} 
-        value={"...."} />);
+        coordinates={[xCoord, yCoord]} 
+        value={this.getCellValue(xCoord, yCoord)} />);
     }
-
     return divList;
   }
 
   getOtherList() {
     var otherListThing = [];
-
-    for (var i = 0; i < 16; i++) {
+    for (var i = 0; i < 16; i++)
       otherListThing.push(<div className='board-row'>{this.getDivList(i)}</div>);
-    }
-
     return otherListThing;
   }
 
