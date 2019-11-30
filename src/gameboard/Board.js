@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Square from './Square.js';
+import Cell from './Cell.js';
 
 class Board extends React.Component {
   constructor(props) {
@@ -34,7 +34,10 @@ class Board extends React.Component {
     var divList = [];
 
     for (var i = 0; i < 30; i++) {
-      divList.push(<Square mineLocations={this.state.mineLocationsArray} coordinates={[xCoord, i]} />);
+      divList.push(<Cell
+        mineLocations={this.state.mineLocationsArray}
+        coordinates={[xCoord, i]} 
+        value={"...."} />);
     }
 
     return divList;
