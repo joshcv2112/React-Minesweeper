@@ -75,7 +75,6 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className='status'>{this.state.mineLocationsArray}</div>
         {this.getOtherList()}
       </div>
     );

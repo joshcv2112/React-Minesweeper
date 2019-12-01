@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import Board from './gameboard/Board.js';
+import Header from './interface/Header.js';
+import Footer from './interface/Footer.js';
+import Settings from './interface/Settings.js';
 
 class Game extends React.Component {
   render() {
     return (
-      <div className='game'>
-        <div className='game-board'>
-          <Board />
-        </div>
-        <div className='game-info'>
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
+      <div>
+        <Header />
+        <Settings />
+        <Board />
+        <Footer />
       </div>
     );
   }

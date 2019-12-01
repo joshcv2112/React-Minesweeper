@@ -32,7 +32,7 @@ class Cell extends React.Component {
     }
   
     displayValue() {
-      if (this.state.cellVisible && this.props.value !== 0)
+      if (this.state.cellVisible)
         return this.props.value;
       return "";
     }
@@ -73,14 +73,14 @@ class Cell extends React.Component {
       return className;
     }
 
-    foo = () => {
+    clickCell = () => {
       this.setState({cellVisible: true});
       this.forceUpdate();
     }
 
     render() {
       return (
-        <button className={"square " + this.cellColor()} onClick={() => this.foo()}>
+        <button className={"square " + this.cellColor()} onClick={() => this.clickCell()}>
           {this.displayValue()}
         </button>
       );
