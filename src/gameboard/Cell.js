@@ -7,7 +7,8 @@ class Cell extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        cellValue: null
+        cellValue: null,
+        cellVisible: false,
       };
     }
   
@@ -31,46 +32,55 @@ class Cell extends React.Component {
     }
   
     displayValue() {
-      if (this.props.value === 0)
-        return "";
-      return this.props.value;
+      if (this.state.cellVisible && this.props.value !== 0)
+        return this.props.value;
+      return "";
     }
 
     cellColor() {
-      if (this.props.value === "X")
-        return "mine_square";
+      var className;
       switch (this.props.value) {
         case "X":
-          return "mine_square";
+          className = "mine_square";
           break;
-        case 6,7,8:
-          return "six_plus_square";
+        case 6:
+        case 7:
+        case 8:
+          className = "six_plus_square";
           break;
         case 5:
-          return "five_square";
+          className = "five_square";
           break;
         case 4:
-          return "four_square";
+          className = "four_square";
           break;
         case 3:
-          return "three_square";
+          className = "three_square";
           break;
         case 2:
-          return "two_square";
+          className = "two_square";
           break;
         case 1:
-          return "one_square";
+          className = "one_square";
           break;
         case 0:
-          return "zero_square";
+          className = "zero_square";
+          break;
+        default:
+          className = "zero_square";
           break;
       }
+      return className;
+    }
+
+    foo = () => {
+      this.setState({cellVisible: true});
+      this.forceUpdate();
     }
 
     render() {
       return (
-        <button className={"square " + this.cellColor()}>
-          {/*this.props.value*/}
+        <button className={"square " + this.cellColor()} onClick={() => this.foo()}>
           {this.displayValue()}
         </button>
       );
