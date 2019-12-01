@@ -33,6 +33,38 @@ ul {
   width: 34px;
 }
 
+.mine_square {
+  background-color: #F96458;  
+}
+
+.six_plus_square {
+  background-color: #E5795A;
+}
+
+.five_square {
+  background-color: #D28E5C;  
+}
+
+.four_square {
+  background-color: #BFA35E;  
+}
+
+.three_square {
+  background-color: #ACB960;  
+}
+
+.two_square {
+  background-color: #99CE62;
+}
+
+.one_square {
+  background-color: #86E364;  
+}
+
+.zero_square {
+  background-color: #73F966;  
+}
+
 .square:focus {
   outline: none;
 }

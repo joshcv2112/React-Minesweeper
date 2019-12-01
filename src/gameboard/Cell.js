@@ -1,10 +1,8 @@
 import React from 'react';
 
-/*
-Properties:
-    mineLocations: array of x y coordinate tuples of all mine locations.
-    coordinates: x y coordinates of the current square
-*/
+/*  Properties:
+      mineLocations: array of x y coordinate tuples of all mine locations.
+      coordinates: x y coordinates of the current square. */
 class Cell extends React.Component {
     constructor(props) {
       super(props);
@@ -33,14 +31,45 @@ class Cell extends React.Component {
     }
   
     displayValue() {
-      if (this.props.value == 0)
+      if (this.props.value === 0)
         return "";
       return this.props.value;
     }
 
+    cellColor() {
+      if (this.props.value === "X")
+        return "mine_square";
+      switch (this.props.value) {
+        case "X":
+          return "mine_square";
+          break;
+        case 6,7,8:
+          return "six_plus_square";
+          break;
+        case 5:
+          return "five_square";
+          break;
+        case 4:
+          return "four_square";
+          break;
+        case 3:
+          return "three_square";
+          break;
+        case 2:
+          return "two_square";
+          break;
+        case 1:
+          return "one_square";
+          break;
+        case 0:
+          return "zero_square";
+          break;
+      }
+    }
+
     render() {
       return (
-        <button className='square' onClick={() => this.setState({ cellValue: 'X' })}>
+        <button className={"square " + this.cellColor()}>
           {/*this.props.value*/}
           {this.displayValue()}
         </button>
