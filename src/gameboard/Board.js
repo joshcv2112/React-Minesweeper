@@ -19,9 +19,9 @@ class Board extends React.Component {
 
   generateMineLocations() {
     var mineLocations = [];
-    while (mineLocations.length <= 72) {
-      var x = Math.floor(Math.random() * 16);
-      var y = Math.floor(Math.random() * 30);
+    while (mineLocations.length <= this.props.mineDensity) {
+      var x = Math.floor(Math.random() * this.props.height);
+      var y = Math.floor(Math.random() * this.props.width);
       if (!this.tileIsAMine(mineLocations, x, y)) {
         mineLocations.push([x, y]);
       }
@@ -55,7 +55,7 @@ class Board extends React.Component {
 
   getDivList(xCoord) {
     var divList = [];
-    for (var yCoord = 0; yCoord < 30; yCoord++) {
+    for (var yCoord = 0; yCoord < this.props.width; yCoord++) {
       this.getCellValue();
       divList.push(<Cell
         mineLocations={this.state.mineLocationsArray}
@@ -67,7 +67,7 @@ class Board extends React.Component {
 
   getOtherList() {
     var otherListThing = [];
-    for (var i = 0; i < 16; i++)
+    for (var i = 0; i < this.props.height; i++)
       otherListThing.push(<div className='board-row'>{this.getDivList(i)}</div>);
     return otherListThing;
   }
