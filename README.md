@@ -1,3 +1,6 @@
+Inspired by the TicTacToe example on [reactjs.org](https://reactjs.org/tutorial/tutorial.html), I decided to expand the game board to make my own implementation of Minesweeper in React. The project is very much a work in progress.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
